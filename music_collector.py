@@ -22,12 +22,11 @@ def import_music_data():
 def main():
     music_data = import_music_data()
     print(music_data)
-    print(music_data[0][0][0])
 
     while True:
         try:
             print('/----------------------------------------------------------------------\ ')
-            print(' Welcome in the CoolMusic! Choose the action:\n\
+            print('     Welcome in the CoolMusic! Choose the action:\n\
             1) Add new album\n\
             2) Find albums by artist\n\
             3) Find albums by year\n\
@@ -49,11 +48,9 @@ def main():
             elif menu_choice == 2:
                 print('You want to find albums by artist.')
                 search = input('Enter artist name: ')
-                for i in music_data:
+                for i in range(len(music_data)):
                     if search == music_data[i][0][0]:
-                        print('Album of artist', search, 'are:', music_data[i][0][1])
-                    else:
-                        print("There is no such artist. :(")
+                        print('Album of artist', search, 'is:', music_data[i][0][1])
 
             elif menu_choice == 3:
                 print('3) Find albums by year')
