@@ -41,23 +41,57 @@ def main():
             print('\----------------------------------------------------------------------/ ')
 
             menu_choice = int(input("Choose option from menu: "))
+            answer_output = []  # empty list for answers
 
             if menu_choice == 1:
                 print('1) Add new album')
 
             elif menu_choice == 2:
                 print('You want to find albums by artist.')
-                search = input('Enter artist name: ')
-                for i in range(len(music_data)):
-                    if search == music_data[i][0][0]:
-                        print('Album of artist', search, 'is:', music_data[i][0][1])
+                search_input = input('Enter artist name: ')
+                for i in range(0, len(music_data)):
+                    if search_input.upper() == music_data[i][0][0].upper():
+                        answer_output.append(music_data[i][0][1])
+                if len(answer_output) == 0:
+                    print('There is no such artist in my list. :(')
+                else:
+                    print('Album(s) of artist', search_input, 'is/are:')
+                    for i in range(len(answer_output)):
+                        print(answer_output[i])
 
             elif menu_choice == 3:
-                print('3) Find albums by year')
+                print('You want to find albums by year.')
+                search_input = input('Enter year: ')
+                if search_input.isdigit():  # 'dupa'test
+                    for i in range(0, len(music_data)):
+                        if int(search_input) == music_data[i][1][0]:
+                            answer_output.append((music_data[i][0][1], music_data[i][0][0]))
+                    if len(answer_output) == 0:
+                        print('There is no album from this year in my list. :(')
+                    else:
+                        print('Album(s) from year', search_input, 'is/are:')
+                        for i in range(len(answer_output)):
+                            print(answer_output[i][0], 'by', answer_output[i][1])
+                else:  # 'dupa'test
+                    print('Is this a YEAR?')
+
             elif menu_choice == 4:
-                print('4) Find musician by albu')
+                print('You want to find musician by album.')
+                search_input = input('Enter album name: ')
+                for i in range(0, len(music_data)):
+                    if search_input.upper() == music_data[i][0][1].upper():
+                        answer_output.append(music_data[i][0][0])
+                if len(answer_output) == 0:
+                    print('There is no such musician who create this album. :(')
+                else:
+                    print('Musician(s) who create album', search_input, 'is/are:')
+                    for i in range(len(answer_output)):
+                        print(answer_output[i])
+
             elif menu_choice == 5:
                 print('5) Find albums by letter(s)')
+
+
             elif menu_choice == 6:
                 print('6) Find albums by genre')
             elif menu_choice == 7:
