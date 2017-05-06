@@ -30,9 +30,10 @@ Welcome in the CoolMusic! Choose the action:
         10) Find the longest-time album *
          0) Exit
 
-* additional features (for 12 pts)
+9, 10) additional features (for 12 pts)
+
 Details
-1. The catalog has to be read from and written into CSV file music.csv (Links to an external site.)Links to an external site. You don't have to push it into repository, your program will be tested with our file.
+1. The catalog has to be read from and written into CSV file music.csv (https://drive.google.com/open?id=0B2VL35dJa4R1V1AwOEpJc2J6eDg). You don't have to push it into repository, your program will be tested with our file.
 
 2. Your script should be based on custom functions.
 

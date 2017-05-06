@@ -1,76 +1,84 @@
 
 import csv
-from collections import OrderedDict     # for sorting of dictionary keys
 
 
-def file_read():
+def import_music_data():
+    ''' Import music data from csv file to list with tuples. '''
     try:
-        my_dict = {}
-        with open('data.csv', mode='r') as open_data:  # Opening a file in read mode
-            reader = csv.reader(open_data, delimiter=',')   # delimiter tells us about separator
-            for row in reader:
-                my_dict[row[0]] = (row[1], row[2])
+        with open('music.csv', mode='r') as open_csv:
+            reader = csv.reader(open_csv, delimiter='|')
+            music_data = []
+            for row in reader:  # read list
+                music_data.append(row)
+            for i in range(len(music_data)):  # change to proper tuples format
+                music_data[i] = ((music_data[i][0].lstrip().rstrip(), music_data[i][1].lstrip().rstrip()),
+                                 (int(music_data[i][2]), music_data[i][3].lstrip().rstrip(), music_data[i][4].lstrip()))
     except FileNotFoundError:
-        print("Data.csv file not found :(")
+        print("music.csv file not found :(")
         exit()
-    return my_dict
+    return music_data
 
 
 def main():
+    music_data = import_music_data()
+    print(music_data)
+    print(music_data[0][0][0])
+
     while True:
-        '''
-        my_dict = {}
-        with open('music.csv', 'r') as f:
-            my_dict = dict(csv.reader(f))
-        print(my_dict)
-        '''
         try:
             print('/----------------------------------------------------------------------\ ')
             print(' Welcome in the CoolMusic! Choose the action:\n\
-                    1) Add new album\n\
-                    2) Find albums by artist\n\
-                    3) Find albums by year\n\
-                    4) Find musician by album\n\
-                    5) Find albums by letter(s)\n\
-                    6) Find albums by genre\n\
-                    7) Calculate the age of all albums \n\
-                    8) Choose a random album by genre\n\
-                    9) ***Show the amount of albums by an artist\n\
-                   10) ***Find the longest-time album\n\
-                    0) Exit')
+            1) Add new album\n\
+            2) Find albums by artist\n\
+            3) Find albums by year\n\
+            4) Find musician by album\n\
+            5) Find albums by letter(s)\n\
+            6) Find albums by genre\n\
+            7) Calculate the age of all albums \n\
+            8) Choose a random album by genre\n\
+            9) ***Show the amount of albums by an artist\n\
+           10) ***Find the longest-time album\n\
+            0) Exit')
             print('\----------------------------------------------------------------------/ ')
 
-            menu = int(input("Choose option from menu: "))
+            menu_choice = int(input("Choose option from menu: "))
 
-            if menu == 1:
+            if menu_choice == 1:
                 print('1) Add new album')
-            elif menu == 2:
-                print('2) Find albums by artist')
-            elif menu == 3:
+
+            elif menu_choice == 2:
+                print('You want to find albums by artist.')
+                search = input('Enter artist name: ')
+                for i in music_data:
+                    if search == music_data[i][0][0]:
+                        print('Album of artist', search, 'are:', music_data[i][0][1])
+                    else:
+                        print("There is no such artist. :(")
+
+            elif menu_choice == 3:
                 print('3) Find albums by year')
-            elif menu == 4:
+            elif menu_choice == 4:
                 print('4) Find musician by albu')
-            elif menu == 5:
+            elif menu_choice == 5:
                 print('5) Find albums by letter(s)')
-            elif menu == 6:
+            elif menu_choice == 6:
                 print('6) Find albums by genre')
-            elif menu == 7:
+            elif menu_choice == 7:
                 print('7) Calculate the age of all albums')
-            elif menu == 8:
+            elif menu_choice == 8:
                 print('8) Choose a random album by genre')
-            elif menu == 9:
+            elif menu_choice == 9:
                 print('9) ***Show the amount of albums by an artist')
-            elif menu == 10:
+            elif menu_choice == 10:
                 print('10) ***Find the longest-time album')
-            elif menu == 0:
-                break
-            else:   # dupa test
+            elif menu_choice == 0:
+                print("See you next time! ( ͡° ͜ʖ ͡°)")
+                exit()
+            else:   # 'dupa' test - wrong number
                 print('Choose proper menu number!')
 
-        except ValueError:  # if you put non-int
+        except ValueError:  # 'dupa' test - if you put non-int
             print('Is that a number?')
-
-    print("See you next time! ( ͡° ͜ʖ ͡°)")
 
 
 if __name__ == '__main__':
