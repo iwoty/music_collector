@@ -1,5 +1,6 @@
 
 import csv
+import random
 
 
 def import_music_data():
@@ -91,20 +92,45 @@ def main():
             elif menu_choice == 5:
                 print('5) Find albums by letter(s)')
 
-
             elif menu_choice == 6:
-                print('6) Find albums by genre')
+                print('You want to find albums by genre.')
+                search_input = input('Enter genre: ')
+                for i in range(0, len(music_data)):
+                    if search_input.upper() == music_data[i][1][1].upper():
+                        answer_output.append((music_data[i][0][1], music_data[i][0][0]))
+                if len(answer_output) == 0:
+                    print('There is no album from this genre in my list. :(')
+                else:
+                    print('Album(s) from genre', search_input.upper(), 'is/are:')
+                    for i in range(len(answer_output)):
+                        print(answer_output[i][0], 'by', answer_output[i][1])
+
             elif menu_choice == 7:
                 print('7) Calculate the age of all albums')
+
             elif menu_choice == 8:
-                print('8) Choose a random album by genre')
+                print('You want to find random album by genre.')
+                search_input = input('Enter genre: ')
+                for i in range(0, len(music_data)):
+                    if search_input.upper() == music_data[i][1][1].upper():
+                        answer_output.append((music_data[i][0][1], music_data[i][0][0]))
+                if len(answer_output) == 0:
+                    print('There is no album from this genre in my list. :(')
+                else:
+                    print('Random album from genre', search_input.upper(), 'is:')
+                    i = random.choice(range(0, len(answer_output)))
+                    print(answer_output[i][0], 'by', answer_output[i][1])
+
             elif menu_choice == 9:
                 print('9) ***Show the amount of albums by an artist')
+
             elif menu_choice == 10:
                 print('10) ***Find the longest-time album')
+
             elif menu_choice == 0:
                 print("See you next time! ( ͡° ͜ʖ ͡°)")
                 exit()
+
             else:   # 'dupa' test - wrong number
                 print('Choose proper menu number!')
 
