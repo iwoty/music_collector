@@ -23,12 +23,10 @@ def import_music_data():
 
 def main():
     music_data = import_music_data()
-    print(music_data)
-
     while True:
         try:
             print('/----------------------------------------------------------------------\ ')
-            print('     Welcome in the CoolMusic! Choose the action:\n\
+            print('     Welcome in the CoolMusic 2.0! Choose the action:\n\
             1) Add new album\n\
             2) Find albums by artist\n\
             3) Find albums by year\n\
@@ -46,8 +44,22 @@ def main():
             answer_output = []  # empty list for answers
 
             if menu_choice == 1:
-                print('You want to add new album')
-                
+                print('You want to add new album.')
+                # dupa test dla kazdego!
+                new_artist = input('Enter artist name: ')
+                new_album = input('Enter album name: ')
+                new_year = input('Enter year: ')
+                new_genre = input('Enter genre: ')
+                new_length_mins = input('Enter minutes length: ')
+                new_length_secs = input('Enter seconds length: ')
+                new_position = [new_artist, ' | ', new_album, ' | ', new_year, ' | ', new_genre, ' | ',
+                                new_length_mins, ':', new_length_secs]
+                new_position = ''.join(new_position)
+                print('You will see new album in CoolMusic 2.0 after you reboot a program ;)')
+                print(new_position)
+                with open('music.csv', mode='a') as add_data:  # opens a file in append mode
+                    append_csv = csv.writer(add_data, delimiter='')
+                    append_csv.writerow(new_position)
 
             elif menu_choice == 2:
                 print('You want to find albums by artist.')
