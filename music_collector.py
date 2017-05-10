@@ -165,7 +165,7 @@ def rand_album_by_genre(music_data):
     if len(answer_output) == 0:
         print('There is no album from this genre. :(')
     else:
-        print(font_green, '\bRandom album from genre', search_input.upper(), 'is:'. font_normal)
+        print(font_green, '\bRandom album from genre', search_input.upper(), 'is:', font_normal)
         i = random.choice(range(0, len(answer_output)))
         print(answer_output[i][0], 'by', answer_output[i][1])
 
@@ -188,7 +188,8 @@ def longest_album(music_data):
         answer_output[i] = int(answer_output[i][0]) * 60 + int(answer_output[i][1])
     i_of_longest = answer_output.index(max(answer_output))
     print(font_green, '\bThe longest-time album is:', music_data[i_of_longest][0][1].upper(),
-          'by', music_data[i_of_longest][0][0].upper(), font_normal)
+          'by', music_data[i_of_longest][0][0].upper(), '\b, it lasts', music_data[i_of_longest][1][2],
+          'minutes.', font_normal)
 
 
 def print_menu():
